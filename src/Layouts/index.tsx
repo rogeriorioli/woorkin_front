@@ -1,7 +1,7 @@
-import React from 'react';
-import CookiesBar from '../components/CookiesBar';
-import Logo from '../components/Logo';
-import Header from './Header';
+import React from "react";
+import CookiesBar from "../components/CookiesBar";
+import Logo from "../components/Logo";
+import Header from "./Header";
 
 // import { Container } from './styles';
 

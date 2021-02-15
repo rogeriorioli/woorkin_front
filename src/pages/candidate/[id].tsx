@@ -1,12 +1,12 @@
-import { profile } from 'console';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import Cards from '../../components/Cards';
-import UserAvatar from '../../components/UserAvatar';
-import Avatar from '../../components/UserAvatar/Avatar';
-import Layouts from '../../Layouts';
-import PageHeader from '../../Layouts/PageHeader';
-import api from '../../services/api';
+import { profile } from "console";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import Cards from "../../components/Cards";
+import UserAvatar from "../../components/UserAvatar";
+import Avatar from "../../components/UserAvatar/Avatar";
+import Layouts from "../../Layouts";
+import PageHeader from "../../Layouts/PageHeader";
+import api from "../../services/api";
 
 // import { Container } from './styles';
 
@@ -22,13 +22,13 @@ const Candidate = ({ id }) => {
     const headers = {
       headers: {
         Authorization: `Bearer ${credentials.token}`,
-        userid: credentials.user
-      }
+        userid: credentials.user,
+      },
     };
     Promise.all([
       api.get(`candidate/${id}`, headers),
       api.get(`avatar_url/${id}`, headers),
-      api.get(`resume/${id}`, headers)
+      api.get(`resume/${id}`, headers),
     ]).then((results) => {
       setProfile(results[0].data);
       setAvatar(results[1].data);
@@ -73,7 +73,7 @@ const Candidate = ({ id }) => {
         <div className="row">
           <div className="column">
             <h2>Curriculum</h2>
-            <div dangerouslySetInnerHTML={{ __html: resume['resume'] }} />
+            <div dangerouslySetInnerHTML={{ __html: resume["resume"] }} />
           </div>
         </div>
       </div>

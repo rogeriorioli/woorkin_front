@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export interface LoginContainerProps {
   background?: string;
@@ -16,7 +16,7 @@ const LoginContainer = styled.div<LoginContainerProps>`
   flex-wrap: wrap;
   position: relative;
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 100%;

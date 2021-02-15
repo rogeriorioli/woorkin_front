@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import UserArea from '../../../Layouts/UserArea';
-import SunEditor, { buttonList } from 'suneditor-react';
-import 'suneditor/dist/css/suneditor.min.css';
-import api from '../../../services/api';
+import React, { useEffect, useState } from "react";
+import UserArea from "../../../Layouts/UserArea";
+import SunEditor, { buttonList } from "suneditor-react";
+import "suneditor/dist/css/suneditor.min.css";
+import api from "../../../services/api";
 // import { Container } from './styles';
 
 const Resume = ({ id }) => {
@@ -53,7 +53,7 @@ const Resume = ({ id }) => {
 
   const [skills, setSkills] = useState([]);
   const [title, setTitle] = useState({});
-  const [resume, setResume] = useState('');
+  const [resume, setResume] = useState("");
   const [Userpermissions, setUserPermissions] = useState({});
   useEffect(() => {
     const { permissions = null } = { ...sessionStorage };
@@ -76,16 +76,16 @@ const Resume = ({ id }) => {
   const dataForm = {
     title,
     skills: skills,
-    resume: resume
+    resume: resume,
   };
   const sendResume = async (e) => {
     e.preventDefault();
     await api
-      .post('resume', dataForm, {
+      .post("resume", dataForm, {
         headers: {
-          Authorization: `Bearer ${Userpermissions['token']}`,
-          userid: Userpermissions['user']
-        }
+          Authorization: `Bearer ${Userpermissions["token"]}`,
+          userid: Userpermissions["user"],
+        },
       })
       .then((sucess) => console.log(sucess))
       .catch((err) => console.error(err));
@@ -114,7 +114,7 @@ const Resume = ({ id }) => {
           <SunEditor
             lang="pt_br"
             setOptions={{
-              height: 400
+              height: 400,
             }}
             defaultValue={exemplo}
             onChange={getResume}

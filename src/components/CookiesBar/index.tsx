@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import CookiesContainer from './styles';
+import CookiesContainer from "./styles";
 
 const CookiesBar: React.FC = () => {
   const [cookie, setCookie] = useState<boolean>(true);
 
   useEffect(() => {
     const cookie = document.cookie.match(
-      new RegExp('(^| )' + 'accept' + '=([^;]+)')
+      new RegExp("(^| )" + "accept" + "=([^;]+)")
     );
     cookie && setCookie(false);
   }, []);
 
   const addCookie = () => {
-    document.cookie = 'accept=true';
+    document.cookie = "accept=true";
     setCookie(!cookie);
   };
 
@@ -28,7 +28,7 @@ const CookiesBar: React.FC = () => {
             Ao continuar navegando, você concorda com essas condições.
           </p>
           <button className="button" onClick={addCookie}>
-            {' '}
+            {" "}
             Entendi e Aceito
           </button>
         </CookiesContainer>

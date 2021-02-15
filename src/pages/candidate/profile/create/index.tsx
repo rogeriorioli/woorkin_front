@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import Notifications from '../../../../components/Notifications';
-import UserAvatar from '../../../../components/UserAvatar';
+import Notifications from "../../../../components/Notifications";
+import UserAvatar from "../../../../components/UserAvatar";
 
-import Layouts from '../../../../Layouts';
-import PageHeader from '../../../../Layouts/PageHeader';
-import api from '../../../../services/api';
+import Layouts from "../../../../Layouts";
+import PageHeader from "../../../../Layouts/PageHeader";
+import api from "../../../../services/api";
 
 const create: React.FC = () => {
   const [formProfile, setFormProfile] = useState({});
   const [notification, setNotification] = useState({
-    message: '',
-    background: 'red',
-    then: false
+    message: "",
+    background: "red",
+    then: false,
   });
   const [userPermissions, setUserPermissions] = useState({});
 
@@ -25,31 +25,31 @@ const create: React.FC = () => {
     event.persist();
     setFormProfile((formProfile) => ({
       ...formProfile,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
   };
 
   const SaveProfile = async (event) => {
     event.preventDefault();
     await api
-      .post('candidateprofile', formProfile, {
+      .post("candidateprofile", formProfile, {
         headers: {
-          Authorization: 'Bearer ' + userPermissions['token'],
-          userid: userPermissions['user']
-        }
+          Authorization: "Bearer " + userPermissions["token"],
+          userid: userPermissions["user"],
+        },
       })
       .then((success) => {
         const data = success.data;
         setNotification({
           message: data.message,
-          background: 'green',
-          then: true
+          background: "green",
+          then: true,
         });
         setTimeout(() => {
           setNotification({
-            message: '',
-            background: '',
-            then: false
+            message: "",
+            background: "",
+            then: false,
           });
         }, 2000);
       })
@@ -57,14 +57,14 @@ const create: React.FC = () => {
         const { err } = error.response.data;
         setNotification({
           message: err,
-          background: 'red',
-          then: true
+          background: "red",
+          then: true,
         });
         setTimeout(() => {
           setNotification({
-            message: '',
-            background: '',
-            then: false
+            message: "",
+            background: "",
+            then: false,
           });
         }, 2000);
       });

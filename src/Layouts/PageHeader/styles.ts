@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface PageHeaderProps {
   background?: string;
@@ -23,7 +23,7 @@ const PageHeaderContainer = styled.section<PageHeaderProps>`
     left: 0;
     width: 100%;
     height: 100%;
-    content: '';
+    content: "";
     background-color: rgba(0, 0, 0, 0.5);
   }
 `;

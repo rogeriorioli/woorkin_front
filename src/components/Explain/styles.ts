@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const SectionExplain = styled.section`
   background: #e6f1fc;
@@ -8,7 +8,7 @@ const SectionExplain = styled.section`
 
   &:after {
     position: absolute;
-    content: '';
+    content: "";
     width: 100%;
     border-radius: 20%;
     height: 160px;
@@ -19,7 +19,7 @@ const SectionExplain = styled.section`
   }
   &:before {
     position: absolute;
-    content: '';
+    content: "";
     width: 100%;
     border-radius: 20%;
     height: 160px;
@@ -33,7 +33,7 @@ const SectionExplain = styled.section`
     justify-content: center;
     position: relative;
     &:after {
-      content: '';
+      content: "";
       position: absolute;
       width: 50px;
       z-index: 8;
@@ -44,7 +44,7 @@ const SectionExplain = styled.section`
       background: #3e3e54;
     }
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       width: 300px;
       z-index: 8;
@@ -63,7 +63,7 @@ const SectionExplain = styled.section`
     &-2 {
       position: relative;
       &:after {
-        content: '';
+        content: "";
         position: absolute;
         width: 50px;
         z-index: 8;
@@ -74,7 +74,7 @@ const SectionExplain = styled.section`
         background: #3e3e54;
       }
       &:before {
-        content: '';
+        content: "";
         position: absolute;
         width: 300px;
         z-index: 8;

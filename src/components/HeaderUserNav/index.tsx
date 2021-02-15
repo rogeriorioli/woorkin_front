@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import { Router, useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import Link from "next/link";
+import { Router, useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import {
   CgChevronDown,
   CgChevronUp,
@@ -8,30 +8,30 @@ import {
   CgHeart,
   CgLoadbarDoc,
   CgProfile,
-  CgSmile
-} from 'react-icons/cg';
-import { RiUserSearchLine, RiUserStarLine } from 'react-icons/ri';
-import api from '../../services/api';
-import { HeaderUserContainer } from './styles';
+  CgSmile,
+} from "react-icons/cg";
+import { RiUserSearchLine, RiUserStarLine } from "react-icons/ri";
+import api from "../../services/api";
+import { HeaderUserContainer } from "./styles";
 
 const HeaderUserNav = () => {
   const route = useRouter();
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const [permissions, setPermissions] = useState({});
   const [user, setUser] = useState({
-    name: '',
-    image: ''
+    name: "",
+    image: "",
   });
   const [notification, setNotification] = useState({
-    message: '',
-    background: 'red',
-    then: false
+    message: "",
+    background: "red",
+    then: false,
   });
 
   const [toggleMenu, setToggleMenu] = useState({
     opacity: 0,
-    visibility: '',
-    open: false
+    visibility: "",
+    open: false,
   });
 
   useEffect(() => {
@@ -40,13 +40,13 @@ const HeaderUserNav = () => {
       const credentials = JSON.parse(permissions);
       setPermissions(credentials);
       const headers = {
-        headers: { Authorization: `Bearer ${credentials.token}` }
+        headers: { Authorization: `Bearer ${credentials.token}` },
       };
 
-      if (credentials.user_type === 'candidate') {
+      if (credentials.user_type === "candidate") {
         Promise.all([
           api.get(`candidate/${credentials.user}`, headers),
-          api.get(`avatar_url/${credentials.user}`, headers)
+          api.get(`avatar_url/${credentials.user}`, headers),
         ]).then((success) => {
           const candidate = success[0].data;
           console.log(`candidatte`, candidate);
@@ -54,27 +54,27 @@ const HeaderUserNav = () => {
           console.log(candidate);
           !candidate[0]
             ? setUser({
-                name: '',
-                image: ''
+                name: "",
+                image: "",
               })
             : setUser({
                 name: candidate[0].name,
                 image: !avatar[0]?.avatar_url
                   ? avatar.avatar_url
-                  : avatar[0]?.avatar_url
+                  : avatar[0]?.avatar_url,
               });
         });
       }
-      if (credentials.user_type === 'recruiter') {
+      if (credentials.user_type === "recruiter") {
         Promise.all([
           api.get(`/corporate/${credentials.user}`, headers),
-          api.get(`/logo_url/${credentials.user}`, headers)
+          api.get(`/logo_url/${credentials.user}`, headers),
         ]).then((success) => {
           const corporate = success[0].data;
           const avatar = success[1].data;
           setUser({
             name: corporate[0].name_company,
-            image: !avatar[0]?.logo_url && avatar.logo_url
+            image: !avatar[0]?.logo_url && avatar.logo_url,
           });
         });
       }
@@ -83,15 +83,15 @@ const HeaderUserNav = () => {
   const toogleMenu = () => {
     setToggleMenu({
       opacity: !toggleMenu.opacity ? 1 : 0,
-      visibility: !toggleMenu.open === false ? 'none' : 'block',
-      open: !toggleMenu.open
+      visibility: !toggleMenu.open === false ? "none" : "block",
+      open: !toggleMenu.open,
     });
   };
   const logout = () => {
     sessionStorage.clear();
     setPermissions({});
-    route.push('/');
-    setUser({ name: '', image: '' });
+    route.push("/");
+    setUser({ name: "", image: "" });
   };
   return (
     <HeaderUserContainer
@@ -110,14 +110,14 @@ const HeaderUserNav = () => {
           </div>
           <ul>
             <li>
-              <Link href="/register/candidate">
+              <Link href="/login/candidate">
                 <a>
                   <RiUserStarLine size={22} /> Sou Candidato
                 </a>
               </Link>
             </li>
             <li>
-              <Link href="/register/recruiter">
+              <Link href="/login/recruiter">
                 <a>
                   <RiUserSearchLine size={22} />
                   Sou Recrutador
@@ -138,24 +138,24 @@ const HeaderUserNav = () => {
             )}
           </div>
           <ul>
-            {permissions['user_type'] === 'candidate' && (
+            {permissions["user_type"] === "candidate" && (
               <>
                 <li>
-                  <Link href={`/user/${permissions['user']}`}>
+                  <Link href={`/user/${permissions["user"]}`}>
                     <a>
                       <CgSmile size={22} /> Minha Area
                     </a>
                   </Link>
                 </li>
                 <li>
-                  <Link href={`/user/profile/${permissions['user']}`}>
+                  <Link href={`/user/profile/${permissions["user"]}`}>
                     <a>
                       <CgProfile size={22} /> Editar Perfil
                     </a>
                   </Link>
                 </li>
                 <li>
-                  <Link href={`/user/resume/${permissions['user']}`}>
+                  <Link href={`/user/resume/${permissions["user"]}`}>
                     <a>
                       <CgLoadbarDoc size={22} />
                       Editar Curriculum
@@ -163,7 +163,7 @@ const HeaderUserNav = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link href={`/candidate/profile/${permissions['user']}`}>
+                  <Link href={`/candidate/profile/${permissions["user"]}`}>
                     <a>
                       <CgHeart size={22} /> Historico de Aplicações
                     </a>

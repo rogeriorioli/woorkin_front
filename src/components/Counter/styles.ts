@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const CounterContainer = styled.section`
   padding: 40px 0;

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import NotificationContainer from './styles';
+import NotificationContainer from "./styles";
 
 interface NotificationsProps {
   background?: string;

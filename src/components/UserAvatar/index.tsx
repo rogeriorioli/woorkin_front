@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { FaCameraRetro } from 'react-icons/fa';
-import api from '../../services/api';
-import Notifications from '../Notifications';
+import React, { useEffect, useState } from "react";
+import { FaCameraRetro } from "react-icons/fa";
+import api from "../../services/api";
+import Notifications from "../Notifications";
 
-import AvatarContainer from './styles';
+import AvatarContainer from "./styles";
 
 interface BgAvatar {
   background?: string;
 }
 
 const UserAvatar = ({ background }: BgAvatar) => {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const [userPermissions, setUserPermissions] = useState({});
   const [notification, setNotification] = useState({
-    message: '',
-    background: 'red',
-    then: false
+    message: "",
+    background: "red",
+    then: false,
   });
   //.
   useEffect(() => {
     const { permissions = null } = { ...sessionStorage };
     const credentials = JSON.parse(permissions);
     const headers = {
-      headers: { Authorization: `Bearer ${credentials.token}` }
+      headers: { Authorization: `Bearer ${credentials.token}` },
     };
     setUserPermissions(JSON.parse(permissions));
     api.get(`candidate/${permissions.user}`, headers).then((success) => {
@@ -45,28 +45,28 @@ const UserAvatar = ({ background }: BgAvatar) => {
   const UploadAvatar = (e) => {
     e.persist();
     const formData = new FormData();
-    formData.append('avatar_url', e.target.files[0]);
+    formData.append("avatar_url", e.target.files[0]);
     api
-      .post('/user_avatar', formData, {
+      .post("/user_avatar", formData, {
         headers: {
-          Authorization: `Bearer ${userPermissions['token']}`,
-          userid: `${userPermissions['user']}`,
-          'content-type': 'multipart/form-data'
-        }
+          Authorization: `Bearer ${userPermissions["token"]}`,
+          userid: `${userPermissions["user"]}`,
+          "content-type": "multipart/form-data",
+        },
       })
       .then((success) => {
         const data = success.data;
-        setImage(data['image']);
+        setImage(data["image"]);
         setNotification({
           message: data.message,
-          background: 'green',
-          then: true
+          background: "green",
+          then: true,
         });
         setTimeout(() => {
           setNotification({
-            message: '',
-            background: '',
-            then: false
+            message: "",
+            background: "",
+            then: false,
           });
         }, 2000);
       })
@@ -74,7 +74,7 @@ const UserAvatar = ({ background }: BgAvatar) => {
   };
   return (
     <AvatarContainer
-      background={!image ? '/static/images/avatar-icon.webp' : image}
+      background={!image ? "/static/images/avatar-icon.webp" : image}
     >
       <label className="btn-picture">
         <input type="file" name="avatar_url" onChange={UploadAvatar} />

@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React, { useEffect } from "react";
+import { useState } from "react";
 
 interface counter {
   number: string;
 }
 
 const Count = ({ number }: counter) => {
-  const [count, setCounter] = useState('0');
+  const [count, setCounter] = useState("0");
 
-  const duration: string = '1';
+  const duration: string = "1";
 
   useEffect(() => {
     let start = 0;

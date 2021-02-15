@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface AvatarImage {
   background?: string;
@@ -29,7 +29,7 @@ const AvatarContainer = styled.div<AvatarImage>`
     border-radius: 50%;
     height: 200px;
     width: 200px;
-    input[type='file'] {
+    input[type="file"] {
       position: absolute;
       opacity: 0;
       z-index: 0;

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 interface HeightMobile {
   height?: string;
@@ -7,7 +7,7 @@ interface HeightMobile {
 export const MenuContainer = styled.div<HeightMobile>`
   border: 1px solid rgba(0, 0, 0, 0.12);
   margin: 20px 0;
-  height: ${(props) => (!props.height ? '291px' : props.height + 'px')};
+  height: ${(props) => (!props.height ? "291px" : props.height + "px")};
   overflow: hidden;
   position: relative;
   transition: all 0.5s;

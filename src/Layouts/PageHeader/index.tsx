@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import PageHeaderContainer from './styles';
+import PageHeaderContainer from "./styles";
 
 interface PageTitle {
   title?: string;

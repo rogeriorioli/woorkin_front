@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-import SectionExplain from './styles';
+import SectionExplain from "./styles";
 
 const Explain: React.FC = ({ children }) => {
   return (

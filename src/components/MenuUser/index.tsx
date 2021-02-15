@@ -1,16 +1,16 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 import {
   CgChevronDown,
   CgChevronUp,
   CgHeart,
   CgLoadbarDoc,
   CgProfile,
-  CgSmile
-} from 'react-icons/cg';
-import api from '../../services/api';
-import { MenuContainer, OpenMenu } from './styles';
+  CgSmile,
+} from "react-icons/cg";
+import api from "../../services/api";
+import { MenuContainer, OpenMenu } from "./styles";
 
 interface MenuProps {
   name?: string;
@@ -21,19 +21,19 @@ const MenuUser = ({ name, id }: MenuProps) => {
   const [mobile, setMobile] = useState<boolean>(false);
 
   const route = useRouter();
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
   const [permissions, setPermissions] = useState({});
-  const [user, setUser] = useState<string>('');
+  const [user, setUser] = useState<string>("");
   const [notification, setNotification] = useState({
-    message: '',
-    background: 'red',
-    then: false
+    message: "",
+    background: "red",
+    then: false,
   });
 
   const [toggleMenu, setToggleMenu] = useState({
     opacity: 0,
-    visibility: '',
-    open: false
+    visibility: "",
+    open: false,
   });
 
   useEffect(() => {
@@ -42,10 +42,10 @@ const MenuUser = ({ name, id }: MenuProps) => {
       const credentials = JSON.parse(permissions);
       setPermissions(credentials);
       const headers = {
-        headers: { Authorization: `Bearer ${credentials.token}` }
+        headers: { Authorization: `Bearer ${credentials.token}` },
       };
 
-      if (credentials.user_type === 'candidate') {
+      if (credentials.user_type === "candidate") {
         api
           .get(`candidate/${credentials.user}`, headers)
           .then((success) => {
@@ -69,9 +69,9 @@ const MenuUser = ({ name, id }: MenuProps) => {
 
   return (
     <>
-      <MenuContainer height={!mobile ? 'auto' : '70 '}>
+      <MenuContainer height={!mobile ? "auto" : "70 "}>
         <div className="welcome">
-          Olá, <strong>{!user ? 'candidato' : user} </strong> ! <br /> seja bem
+          Olá, <strong>{!user ? "candidato" : user} </strong> ! <br /> seja bem
           vindo.
         </div>
         {user && (

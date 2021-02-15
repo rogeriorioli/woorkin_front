@@ -1,7 +1,7 @@
-import React, { ReactNode, useState } from 'react';
-import { FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
-import { BiWorld } from 'react-icons/bi';
-import CardContainer from './styles';
+import React, { ReactNode, useState } from "react";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { BiWorld } from "react-icons/bi";
+import CardContainer from "./styles";
 
 interface CardsProps {
   name: string;
@@ -24,7 +24,7 @@ const Cards = ({
   linkedin,
   phone,
   website,
-  children
+  children,
 }: CardsProps) => {
   return (
     <CardContainer>

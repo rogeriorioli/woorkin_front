@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
 
-import UserArea from '../../Layouts/UserArea';
-import api from '../../services/api';
+import UserArea from "../../Layouts/UserArea";
+import api from "../../services/api";
 
 const User = ({ id }) => {
   const [profile, setProfile] = useState([]);
@@ -12,7 +12,7 @@ const User = ({ id }) => {
     const { permissions = null } = { ...sessionStorage };
     const credentials = JSON.parse(permissions);
     const headers = {
-      headers: { Authorization: `Bearer ${credentials.token}` }
+      headers: { Authorization: `Bearer ${credentials.token}` },
     };
 
     api.get(`candidate/${id}`, headers).then((results) => {

@@ -37,8 +37,8 @@ When wrapping a [Link](https://nextjs.org/docs/api-reference/next/link) from `ne
 **components/StyledLink.js**
 
 ```javascript
-import Link from 'next/link';
-import styled from 'styled-components';
+import Link from "next/link";
+import styled from "styled-components";
 
 const StyledLink = ({ as, children, className, href }) => (
   <Link href={href} as={as} passHref>
@@ -66,7 +66,7 @@ export default styled(StyledLink)`
 **pages/index.js**
 
 ```javascript
-import StyledLink from '../components/StyledLink';
+import StyledLink from "../components/StyledLink";
 
 export default () => (
   <StyledLink href="/post/[pid]" forwardedAs="/post/abc">

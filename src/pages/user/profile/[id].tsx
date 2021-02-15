@@ -1,13 +1,13 @@
-import { profile } from 'console';
-import { useRouter } from 'next/router';
-import React, { ChangeEvent, useEffect, useState } from 'react';
-import Cards from '../../../components/Cards';
-import Notifications from '../../../components/Notifications';
-import UserAvatar from '../../../components/UserAvatar';
-import Layouts from '../../../Layouts';
-import PageHeader from '../../../Layouts/PageHeader';
-import UserArea from '../../../Layouts/UserArea';
-import api from '../../../services/api';
+import { profile } from "console";
+import { useRouter } from "next/router";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import Cards from "../../../components/Cards";
+import Notifications from "../../../components/Notifications";
+import UserAvatar from "../../../components/UserAvatar";
+import Layouts from "../../../Layouts";
+import PageHeader from "../../../Layouts/PageHeader";
+import UserArea from "../../../Layouts/UserArea";
+import api from "../../../services/api";
 
 // import { Container } from './styles';
 
@@ -17,9 +17,9 @@ const Profile = ({ id }) => {
   const router = useRouter();
   const [formProfile, setFormProfile] = useState({});
   const [notification, setNotification] = useState({
-    message: '',
-    background: 'red',
-    then: false
+    message: "",
+    background: "red",
+    then: false,
   });
   const [userPermissions, setUserPermissions] = useState({});
 
@@ -27,7 +27,7 @@ const Profile = ({ id }) => {
     event.persist();
     setFormProfile((formProfile) => ({
       ...formProfile,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     }));
   };
 
@@ -36,14 +36,14 @@ const Profile = ({ id }) => {
     const credentials = JSON.parse(permissions);
     setUserPermissions(credentials);
     const headers = {
-      headers: { Authorization: `Bearer ${credentials.token}`, userid: id }
+      headers: { Authorization: `Bearer ${credentials.token}`, userid: id },
     };
     if (id !== credentials.user) {
-      router.push('/');
+      router.push("/");
     }
     Promise.all([
       api.get(`candidate/${id}`, headers),
-      api.get(`avatar_url/${id}`, headers)
+      api.get(`avatar_url/${id}`, headers),
     ]).then((results) => {
       setProfile(results[0].data);
       setAvatar(results[1].data);
@@ -54,22 +54,22 @@ const Profile = ({ id }) => {
     await api
       .put(`candidateprofile/${id}`, formProfile, {
         headers: {
-          Authorization: 'Bearer ' + userPermissions['token'],
-          userid: userPermissions['user']
-        }
+          Authorization: "Bearer " + userPermissions["token"],
+          userid: userPermissions["user"],
+        },
       })
       .then((success) => {
         const data = success.data;
         setNotification({
           message: data.message,
-          background: 'green',
-          then: true
+          background: "green",
+          then: true,
         });
         setTimeout(() => {
           setNotification({
-            message: '',
-            background: '',
-            then: false
+            message: "",
+            background: "",
+            then: false,
           });
         }, 2000);
       })
@@ -77,14 +77,14 @@ const Profile = ({ id }) => {
         const { err } = error.response.data;
         setNotification({
           message: err,
-          background: 'red',
-          then: true
+          background: "red",
+          then: true,
         });
         setTimeout(() => {
           setNotification({
-            message: '',
-            background: '',
-            then: false
+            message: "",
+            background: "",
+            then: false,
           });
         }, 2000);
       });

@@ -1,5 +1,5 @@
-import React from 'react';
-import AvatarContainer from './styles';
+import React from "react";
+import AvatarContainer from "./styles";
 
 // import { Container } from './styles';
 
@@ -10,7 +10,7 @@ interface AvatarProps {
 const Avatar = ({ background }: AvatarProps) => {
   return (
     <AvatarContainer
-      avatar={!background ? '../static/images/avatar-icon.webp' : background}
+      avatar={!background ? "../static/images/avatar-icon.webp" : background}
     />
   );
 };

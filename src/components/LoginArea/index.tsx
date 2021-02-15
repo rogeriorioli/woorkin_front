@@ -1,5 +1,5 @@
-import React from 'react';
-import LoginContainer, { LoginContainerProps } from './styles';
+import React from "react";
+import LoginContainer, { LoginContainerProps } from "./styles";
 
 interface Login extends LoginContainerProps {
   image: string;
