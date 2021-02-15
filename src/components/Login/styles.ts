@@ -11,41 +11,40 @@ const LoginContainer = styled.div`
       text-align: center;
     }
     &-login {
-      margin : 20px 0;
+      margin: 20px 0;
       fieldset {
-        margin : 10px 0;
-        padding : 0;
-       border: 1px solid rgba(0, 0, 0, 0.12);
-       legend {
-         padding : 0 5px;
-         margin : 0;
-       }
-       input {
-         border : none;
-         margin : 0;
-       }
+        margin: 10px 0;
+        padding: 0;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        legend {
+          padding: 0 5px;
+          margin: 0;
+        }
+        input {
+          border: none;
+          margin: 0;
+        }
       }
     }
     &-sign {
-      display : flex;
+      display: flex;
       justify-content: space-between;
       .register {
-
-        font-size : 12px;
-        display : flex;
+        font-size: 12px;
+        display: flex;
         align-items: center;
         button {
-          background : none;
-          padding : 0 3px;
+          background: none;
+          padding: 0 3px;
           margin: 0 3px;
           color: blue;
-          border : none;
+          border: none;
         }
       }
       .enter {
         button {
-          background : blue;
-          border : none;
+          background: blue;
+          border: none;
         }
       }
     }
@@ -55,7 +54,7 @@ const LoginContainer = styled.div`
     height: 250px;
     h2 {
       font-size: 23px;
-      text-transform : capitalize;
+      text-transform: capitalize;
     }
     &-choose {
       display: flex;

@@ -15,12 +15,9 @@ const loginType = ({ slug }) => {
     }));
   };
 
-
-
-
   const handeleLogin = async (e: FormEvent) => {
     e.preventDefault();
-    if(slug === 'candidate') {
+    if (slug === "candidate") {
       await api
         .post("authcandidate", credentials)
         .then((success) => {
@@ -36,9 +33,11 @@ const loginType = ({ slug }) => {
             .then((success) => {
               const { data } = success;
               console.log(success.data);
-  
+
               if (data[0] === null) {
-                setMessage("por favor complete seu perfil para poder ver vagas ");
+                setMessage(
+                  "por favor complete seu perfil para poder ver vagas "
+                );
                 setTimeout(() => {
                   router.push(`/user/profile/create/${permissions.user}`);
                 }, 3000);
@@ -47,97 +46,95 @@ const loginType = ({ slug }) => {
               }
             });
         })
-  
+
         .catch(function (error) {
           if (error.response) {
             const { err } = error.response.data;
             setMessage(err);
           }
         });
-
     }
-    if(slug === 'recruiter') {
-       await api
-      .post("authrecruiter", credentials)
-      .then((success) => {
-        const { permissions } = success.data;
-        sessionStorage.setItem("permissions", JSON.stringify(permissions));
-        api
-          .get(`corporate/${permissions.user}`, {
-            headers: {
-              Authorization: "Bearer " + permissions.token,
-            },
-          })
-          .then((success) => {
-            const { data } = success;
-            console.log(success.data);
+    if (slug === "recruiter") {
+      await api
+        .post("authrecruiter", credentials)
+        .then((success) => {
+          const { permissions } = success.data;
+          sessionStorage.setItem("permissions", JSON.stringify(permissions));
+          api
+            .get(`corporate/${permissions.user}`, {
+              headers: {
+                Authorization: "Bearer " + permissions.token,
+              },
+            })
+            .then((success) => {
+              const { data } = success;
+              console.log(success.data);
 
-            if (data[0] === null) {
-              setMessage(
-                "por favor complete seu perfil para poder publicar vagas"
-              );
-              setTimeout(() => {
+              if (data[0] === null) {
+                setMessage(
+                  "por favor complete seu perfil para poder publicar vagas"
+                );
+                setTimeout(() => {
+                  router.push("/");
+                }, 3000);
+              } else {
                 router.push("/");
-              }, 3000);
-            } else {
-              router.push("/");
-            }
-          });
-      })
-      .catch(function (error) {
-        if (error.response) {
-          const { err } = error.response.data;
-          setMessage(err);
-        }
-      });
+              }
+            });
+        })
+        .catch(function (error) {
+          if (error.response) {
+            const { err } = error.response.data;
+            setMessage(err);
+          }
+        });
     }
   };
 
   const handleCreateRegister = async (e: FormEvent) => {
     e.preventDefault();
 
-    if(slug === 'candidate') {
-
-    await api
-      .post("candidate", credentials)
-      .then((success) => {
-        const { data } = success;
-        setMessage(data.message);
-        setTimeout(() => {
-          handeleLogin(e);
-        }, 2000);
-      })
-
-      .catch(function (error) {
-        if (error.response) {
-          const { err } = error.response.data;
-          setMessage(err);
+    if (slug === "candidate") {
+      await api
+        .post("candidate", credentials)
+        .then((success) => {
+          const { data } = success;
+          setMessage(data.message);
           setTimeout(() => {
-            setMessage("");
+            handeleLogin(e);
           }, 2000);
-        }
-      });
+        })
+
+        .catch(function (error) {
+          if (error.response) {
+            const { err } = error.response.data;
+            setMessage(err);
+            setTimeout(() => {
+              setMessage("");
+            }, 2000);
+          }
+        });
     }
-    if(slug === 'recruiter') {
-       await api
-      .post("recruiter", credentials)
-      .then((success) => {
-        const { data } = success;
-        setMessage(data.message);
-        setTimeout(() => {
-          handeleLogin(e);
-        }, 2000);
-      })
-
-      .catch(function (error) {
-        if (error.response) {
-          const { err } = error.response.data;
-          setMessage(err);
+    if (slug === "recruiter") {
+      await api
+        .post("recruiter", credentials)
+        .then((success) => {
+          const { data } = success;
+          setMessage(data.message);
           setTimeout(() => {
-            setMessage("");
+            handeleLogin(e);
           }, 2000);
-        }
-      });
+        })
+
+        .catch(function (error) {
+          if (error.response) {
+            const { err } = error.response.data;
+            setMessage(err);
+            setTimeout(() => {
+              setMessage("");
+            }, 2000);
+          }
+        });
     }
   };
 
@@ -156,25 +153,25 @@ const loginType = ({ slug }) => {
         ) : (
           <div className="welcome">
             Olá {`Candidato(a) ! `} <br />
-              Preencha os campos abaixo e começe e encontre empresas
+            Preencha os campos abaixo e começe e encontre empresas
           </div>
         )}
         <div className="form-container-login">
-            {register && 
-              <>     
-          <fieldset>
-              <legend>Username</legend>
-                <input type="text" name="username" onChange={getInputData} />
-            </fieldset>
-            </>
-            }
+          {register && (
+            <>
               <fieldset>
+                <legend>Username</legend>
+                <input type="text" name="username" onChange={getInputData} />
+              </fieldset>
+            </>
+          )}
+          <fieldset>
             <legend>Email</legend>
-              <input type="email" name="email"  onChange={getInputData}/>
+            <input type="email" name="email" onChange={getInputData} />
           </fieldset>
           <fieldset>
             <legend>Senha</legend>
-              <input type="password" name="password"  onChange={getInputData}/>
+            <input type="password" name="password" onChange={getInputData} />
           </fieldset>
         </div>
         <div className="form-container-sign">
@@ -182,16 +179,14 @@ const loginType = ({ slug }) => {
             não tem conta ? <button onClick={handleRegister}>Registre</button>
           </div>
           {register ? (
-              <div className="enter">
-            <button onClick={handleCreateRegister} >Registrar</button>
-          </div> 
-
-          ): 
-          <div className="enter">
-            <button onClick={handeleLogin}>entrar</button>
-          </div>
-          }
-         
+            <div className="enter">
+              <button onClick={handleCreateRegister}>Registrar</button>
+            </div>
+          ) : (
+            <div className="enter">
+              <button onClick={handeleLogin}>entrar</button>
+            </div>
+          )}
         </div>
         {message}
       </div>
