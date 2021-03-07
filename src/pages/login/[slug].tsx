@@ -52,6 +52,7 @@ const loginType = ({ slug }) => {
             const { err } = error.response.data;
             setMessage(err);
           }
+        sessionStorage.removeItem("permissions")
         });
     }
     if (slug === "recruiter") {
@@ -84,6 +85,7 @@ const loginType = ({ slug }) => {
         })
         .catch(function (error) {
           if (error.response) {
+            console.log(error.response)
             const { err } = error.response.data;
             setMessage(err);
           }

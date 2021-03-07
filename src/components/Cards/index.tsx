@@ -30,6 +30,11 @@ const Cards = ({
     <CardContainer>
       <h2>{name}</h2>
       <p>{description}</p>
+      <p>
+        <strong>
+          Gostou do candidato ? <br/> fale diretamente com ele
+        </strong>
+      </p>
       <ul>
         {github && (
           <li>

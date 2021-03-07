@@ -24,7 +24,7 @@ const Count = ({ number }: counter) => {
       if (start === end) clearInterval(timer);
     }, incrementTime);
   }, [number, duration]);
-  return <strong>{count}</strong>;
+  return <strong>{count === `100` ? ' + 10' : count }</strong>;
 };
 
 export default Count;
