@@ -13,22 +13,21 @@ import api from "../../services/api";
 // import { Container } from './styles';
 
 interface ResumeData {
-    resume : string
-    title : string
-    skills : [],
-    file_url : string
+  resume: string;
+  title: string;
+  skills: [];
+  file_url: string;
 }
-
 
 const Candidate = ({ id }) => {
   const [profile, setProfile] = useState([]);
   const [avatar, setAvatar] = useState({});
   const [resume, setResume] = useState<ResumeData>();
   const [resumeFile, setResumeFile] = useState<ResumeData>();
-  const [modal , setModal] = useState(false)  
+  const [modal, setModal] = useState(false);
   const modalToogle = () => {
-    setModal(!modal)
-  }
+    setModal(!modal);
+  };
   useEffect(() => {
     const { permissions = null } = { ...sessionStorage };
     const credentials = JSON.parse(permissions);
@@ -47,18 +46,18 @@ const Candidate = ({ id }) => {
       setProfile(results[0].data);
       setAvatar(results[1].data);
       setResume(results[2].data);
-      setResumeFile(results[3].data!)
+      setResumeFile(results[3].data!);
     });
   }, []);
 
-  console.log(resumeFile)
+  console.log(resumeFile);
 
   return (
     <Layouts>
       <PageHeader
         background="../static/images/profile-bg.jpeg"
         title={`${profile[0]?.name}`}
-        height={'400'}
+        height={"400"}
       />
       <div className="container">
         <div className="row">
@@ -83,42 +82,47 @@ const Candidate = ({ id }) => {
                     phone={user.phone}
                   />
                 );
-              })
-            }
+              })}
           </div>
         </div>
         <Card>
-        <div className="row">
-          <div className="column">
-            <h2>Curriculum</h2>
-            <div>
-              {resume && resume.resume}
+          <div className="row">
+            <div className="column">
+              <h2>Curriculum</h2>
+              <div>{resume && resume.resume}</div>
+
+              <button onClick={modalToogle}>
+                <MdOpenInBrowser size={22} /> Ver Curriculum
+              </button>
             </div>
-     
-            <button onClick={modalToogle}><MdOpenInBrowser size={22} /> Ver Curriculum</button>
           </div>
-        </div>
         </Card>
         <Card>
-        <div className="row">
-          <div className="column">
-            <h2>Habilidades</h2>
-            <div>
-              {resume && resume.skills.map(skill => <div className="label" key={skill}>{skill}</div>)}
+          <div className="row">
+            <div className="column">
+              <h2>Habilidades</h2>
+              <div>
+                {resume &&
+                  resume.skills.map((skill) => (
+                    <div className="label" key={skill}>
+                      {skill}
+                    </div>
+                  ))}
+              </div>
             </div>
           </div>
-        </div>
         </Card>
       </div>
-      {modal &&
-         <Modal onClick={modalToogle} stateClass={modal ? `fade-in` : `fade-out`} >
-
-         
-            {resumeFile && 
-                <embed src={resumeFile[0].file_url}  width="100%"  height="100%;"/>
-              } 
-         </Modal>  
-      }
+      {modal && (
+        <Modal
+          onClick={modalToogle}
+          stateClass={modal ? `fade-in` : `fade-out`}
+        >
+          {resumeFile && (
+            <embed src={resumeFile[0].file_url} width="100%" height="100%;" />
+          )}
+        </Modal>
+      )}
     </Layouts>
   );
 };

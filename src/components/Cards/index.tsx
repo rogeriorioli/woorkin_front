@@ -32,7 +32,7 @@ const Cards = ({
       <p>{description}</p>
       <p>
         <strong>
-          Gostou do candidato ? <br/> fale diretamente com ele
+          Gostou do candidato ? <br /> fale diretamente com ele
         </strong>
       </p>
       <ul>

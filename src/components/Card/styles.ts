@@ -7,18 +7,18 @@ const CardContainer = styled.div`
   margin: 20px 0;
 
   .label {
-    background :rgba(0, 0, 0, 0.12);
-    display : inline-block;
-    margin : 10px  10px 10px 0 ;
-    padding : 5px;
-    border-radius : 10px;
-    vertical-align : bottom;
+    background: rgba(0, 0, 0, 0.12);
+    display: inline-block;
+    margin: 10px 10px 10px 0;
+    padding: 5px;
+    border-radius: 10px;
+    vertical-align: bottom;
   }
   button {
-    display : flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin : 20px 0;
+    margin: 20px 0;
     svg {
       margin-right: 10px;
     }
